@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Template - AI Resume Builder</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .template-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .template-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        .template-card.selected {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        .template-preview {
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        .template-preview.professional {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .template-preview.modern {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .template-preview.creative {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .template-preview.minimal {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .template-preview.classic {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .template-preview.tech {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .template-preview.executive {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+        .template-preview.vibrant {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%);
+        }
+        .template-preview.elegant {
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+        .template-preview.fresh {
+            background: linear-gradient(135deg, #00cec9 0%, #55a3ff 100%);
+        }
+        .template-preview.corporate {
+            background: linear-gradient(135deg, #636e72 0%, #b2bec3 100%);
+        }
+        .template-preview.artistic {
+            background: linear-gradient(135deg, #6c5ce7 0%, #00b894 100%);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">AI Resume Builder</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/create">Back to Form</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="text-center mb-5">
+                    <h1>Choose Your Resume Template</h1>
+                    <p class="lead">Select a template that best represents your professional style</p>
+                </div>
+
+                <form th:action="@{/create}" method="get" id="templateForm">
+                    <div class="row g-4">
+                        <!-- Professional Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="professional">
+                                <div class="template-preview professional">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Professional</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 80%;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 60%;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 70%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Professional</h5>
+                                    <p class="card-text">Clean and elegant design perfect for corporate environments</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="professional" id="professional" checked>
+                                        <label class="form-check-label" for="professional">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modern Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="modern">
+                                <div class="template-preview modern">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Modern</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.4); margin: 8px 0; width: 80%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.4); margin: 8px 0; width: 60%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.4); margin: 8px 0; width: 70%; border-radius: 3px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Modern</h5>
+                                    <p class="card-text">Contemporary design with vibrant colors and clean lines</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="modern" id="modern">
+                                        <label class="form-check-label" for="modern">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Creative Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="creative">
+                                <div class="template-preview creative">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Creative</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 10px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 80%; border-radius: 5px;"></div>
+                                            <div style="height: 10px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 60%; border-radius: 5px;"></div>
+                                            <div style="height: 10px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 70%; border-radius: 5px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Creative</h5>
+                                    <p class="card-text">Bold and artistic design for creative professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="creative" id="creative">
+                                        <label class="form-check-label" for="creative">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Minimal Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="minimal">
+                                <div class="template-preview minimal">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Minimal</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 4px; background: rgba(255,255,255,0.5); margin: 10px 0; width: 80%;"></div>
+                                            <div style="height: 4px; background: rgba(255,255,255,0.5); margin: 10px 0; width: 60%;"></div>
+                                            <div style="height: 4px; background: rgba(255,255,255,0.5); margin: 10px 0; width: 70%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Minimal</h5>
+                                    <p class="card-text">Simple and clean design focusing on content</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="minimal" id="minimal">
+                                        <label class="form-check-label" for="minimal">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Classic Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="classic">
+                                <div class="template-preview classic">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Classic</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.3); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Classic</h5>
+                                    <p class="card-text">Traditional and timeless design for all industries</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="classic" id="classic">
+                                        <label class="form-check-label" for="classic">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tech Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="tech">
+                                <div class="template-preview tech">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-dark">
+                                        <h5 class="mb-3">Tech</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(0,0,0,0.1); border-radius: 50%; margin: 0 auto 10px;"></div>
+                                            <div style="height: 6px; background: rgba(0,0,0,0.2); margin: 8px 0; width: 80%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(0,0,0,0.2); margin: 8px 0; width: 60%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(0,0,0,0.2); margin: 8px 0; width: 70%; border-radius: 3px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Tech</h5>
+                                    <p class="card-text">Modern tech-focused design with subtle colors</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="tech" id="tech">
+                                        <label class="form-check-label" for="tech">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Executive Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="executive">
+                                <div class="template-preview executive">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Executive</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.15); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(255,255,255,0.3);"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.4); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.4); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.4); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Executive</h5>
+                                    <p class="card-text">Sophisticated dark theme for senior-level professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="executive" id="executive">
+                                        <label class="form-check-label" for="executive">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Vibrant Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="vibrant">
+                                <div class="template-preview vibrant">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Vibrant</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(255,255,255,0.4);"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Vibrant</h5>
+                                    <p class="card-text">Energetic orange design for dynamic professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="vibrant" id="vibrant">
+                                        <label class="form-check-label" for="vibrant">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Elegant Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="elegant">
+                                <div class="template-preview elegant">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Elegant</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,215,0,0.2); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(255,215,0,0.4);"></div>
+                                            <div style="height: 8px; background: rgba(255,215,0,0.4); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,215,0,0.4); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,215,0,0.4); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Elegant</h5>
+                                    <p class="card-text">Sophisticated gold and dark theme for luxury professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="elegant" id="elegant">
+                                        <label class="form-check-label" for="elegant">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fresh Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="fresh">
+                                <div class="template-preview fresh">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Fresh</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(255,255,255,0.4);"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.5); margin: 8px 0; width: 80%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.5); margin: 8px 0; width: 60%; border-radius: 3px;"></div>
+                                            <div style="height: 6px; background: rgba(255,255,255,0.5); margin: 8px 0; width: 70%; border-radius: 3px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Fresh</h5>
+                                    <p class="card-text">Clean mint and blue design for fresh professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="fresh" id="fresh">
+                                        <label class="form-check-label" for="fresh">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Corporate Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="corporate">
+                                <div class="template-preview corporate">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-dark">
+                                        <h5 class="mb-3">Corporate</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.8); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(0,0,0,0.1);"></div>
+                                            <div style="height: 8px; background: rgba(0,0,0,0.3); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(0,0,0,0.3); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(0,0,0,0.3); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Corporate</h5>
+                                    <p class="card-text">Professional gray theme for business environments</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="corporate" id="corporate">
+                                        <label class="form-check-label" for="corporate">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Artistic Template -->
+                        <div class="col-md-4">
+                            <div class="card template-card" data-template="artistic">
+                                <div class="template-preview artistic">
+                                    <div class="d-flex flex-column h-100 justify-content-center align-items-center text-white">
+                                        <h5 class="mb-3">Artistic</h5>
+                                        <div class="text-center">
+                                            <div style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; margin: 0 auto 10px; border: 2px solid rgba(255,255,255,0.4);"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 80%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 60%; border-radius: 4px;"></div>
+                                            <div style="height: 8px; background: rgba(255,255,255,0.5); margin: 5px 0; width: 70%; border-radius: 4px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Artistic</h5>
+                                    <p class="card-text">Creative purple and teal design for artistic professionals</p>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="template" value="artistic" id="artistic">
+                                        <label class="form-check-label" for="artistic">
+                                            Select this template
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                            Continue with Selected Template
+                        </button>
+                        <a href="/create" class="btn btn-outline-secondary btn-lg ms-3">Skip Template Selection</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Template selection functionality
+        document.querySelectorAll('.template-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+
+                // Add selected class to clicked card
+                this.classList.add('selected');
+
+                // Check the radio button
+                const template = this.dataset.template;
+                document.getElementById(template).checked = true;
+            });
+        });
+
+        // Form validation
+        document.getElementById('templateForm').addEventListener('submit', function(e) {
+            const selectedTemplate = document.querySelector('input[name="template"]:checked');
+            if (!selectedTemplate) {
+                e.preventDefault();
+                alert('Please select a template before continuing.');
+            }
+        });
+    </script>
+</body>
+</html>
