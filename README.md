@@ -29,7 +29,7 @@ A Spring Boot web application that generates professional resumes using AI-power
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/kbkapil/ai-resume-builder.git
 cd ai-resume-builder
 ```
 

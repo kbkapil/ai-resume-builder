@@ -11,6 +11,7 @@
     <groupId>com.airesumebuilder</groupId>
     <artifactId>ai-resume-builder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
     <name>ai-resume-builder</name>
     <description>AI-Generated Resume Builder using Spring Boot</description>
     <properties>
